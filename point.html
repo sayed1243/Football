@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الشهادة</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>
+    body {
+      font-family: "Amiri", serif;
+      background-color: #f3f4f6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+ 
+    #download-btn {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 20px;
+      background-color: #004d61;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #download-btn:hover {
+      background-color: #006d7c;
+    }
+    #certificate{
+    padding:20px 20px 0px;
+        width:600px;
+        background:#004d61;
+        border:#ffffff solid 3px;
+        border-radius:10px;
+        text-align: center;
+       } 
+  </style>
+</head>
+<body>
+  <div id="certificate">
+  <p style="margin:10px;font-size:35px; color:#ffffff">شكر وتقدير</p>
+  <div style="display: flex; Justify-content: center; color:#fff"> يتقدم موقع تحديات كروية بخالص الشكر ل</div>
+    <span class="name" id="name" style="font-size:30px; color:#fff"></span>
+    <div style="display: flex; Justify-content: center; color:#fff">حصوله على عدد من النقاط<span class="score" id="score" style="margin:0px 10px"></span></div>
+    <p style="text-align:left;  padding:5px;width:50px; height:50px; border-radius:50%;font-size:25px; text-align: center; display: flex; Justify-content: center; align-items: center; box-shadow:0px 0px 5px 5px #004d61 inset; color:#fffffd;font-weight:900; margin-right:80%">SMO</o>
+    
+  </div>
+  <button id="download-btn">تنزيل الشهادة</button>
+
+  <script>
+    // استرجاع البيانات من التخزين المحلي
+    const username = localStorage.getItem("username");
+    const score = localStorage.getItem("score");
+
+    // عرض البيانات على الشهادة
+    document.getElementById("name").textContent = `${username}`;
+    document.getElementById("score").textContent = ` ${score}`;
+
+    // تنزيل الشهادة كصورة
+    document.getElementById("download-btn").addEventListener("click", () => {
+      html2canvas(document.querySelector("#certificate")).then(canvas => {
+        const link = document.createElement("a");
+        link.download = "certificate.png";
+        link.href = canvas.toDataURL();
+        link.click();
+      });
+    });
+  </script>
+</body>
+</html>

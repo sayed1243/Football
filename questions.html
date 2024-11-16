@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>صفحة الأسئلة</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"> 
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f3f4f6;
+      color: #333;
+      line-height: 1.6;
+      font-family: "Amiri", serif;
+    }
+    a{
+    	text-decoration: none;
+    }
+    button, input, textarea {
+      font-family: "Amiri", serif;
+    }
+    nav {
+      background-color: #004d61;
+      color: white;
+      padding: 10px 0px;
+      text-align: center;
+      position: fixed;
+      width: 100%;
+      top: 0;
+    }
+    nav h3 {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 30px;
+    }
+    nav div {
+      background: #ffffff;
+      margin: 10px -20px -10px;
+      padding: 10px;
+      border-bottom: solid 5px #004d61;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+    }
+    nav div a {
+      color: #004d61;
+      text-decoration: none;
+      font-size: 20px;
+    }
+    .form-container, .container {
+      max-width: 800px;
+      margin: 100px auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      margin-top:150px;
+    }
+    .form-container input, .form-container button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 1em;
+    }
+    .question-image {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+    .answers button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      background-color: #004d61;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    .answers button.correct {
+      background-color: green !important;
+    }
+    .answers button.wrong {
+      background-color: red !important;
+    }
+    .answers button:hover {
+      background-color: #006d7c;
+    }
+    .score {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+    #certificate-btn {
+      display: none;
+      background-color: #004d61;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+      margin-top: 20px;
+    }
+    #certificate-btn:hover {
+      background-color: #006d7c;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <h3>تحديات كروية</h3>
+  <div>
+    <a href="#">الرئيسية</a>
+    <a href="#">الأسئلة</a>
+    <a href="#">تواصل معنا</a>
+  </div>
+</nav>
+
+<!-- نموذج تسجيل الدخول -->
+<div class="form-container" id="form-container">
+  <h2 style="color:#004d61">تسجيل الدخول</h2>
+  <input type="text" id="username" placeholder="الاسم" required>
+  <input type="email" id="email" placeholder="البريد الإلكتروني" required>
+  <button style="background:#004d61; color:#ffffff; border:none;" onclick="startQuiz()">ابدأ الاختبار</button>
+</div>
+
+<!-- قسم الأسئلة -->
+<div class="container" id="quiz-container" style="display: none;">
+  <div class="score">النقاط: <span id="score">0</span></div>
+  <div id="question-container">
+    <img id="question-image" class="question-image" src="" alt="السؤال">
+    <div class="answers">
+      <button onclick="checkAnswer(this, true)">إجابة 1</button>
+      <button onclick="checkAnswer(this, false)">إجابة 2</button>
+      <button onclick="checkAnswer(this, false)">إجابة 3</button>
+      <button onclick="checkAnswer(this, false)">إجابة 4</button>
+    </div>
+  </div>
+  <a href="point.html" id="certificate-btn" >تحميل الشهادة</a>
+</div>
+
+<script>
+  // تسجيل البيانات
+  function startQuiz() {
+    const username = document.getElementById("username").value;
+    const email = document.getElementById("email").value;
+
+    if (username && email) {
+      localStorage.setItem("username", username);
+      localStorage.setItem("email", email);
+      document.getElementById("form-container").style.display = "none";
+      document.getElementById("quiz-container").style.display = "block";
+      loadQuestion();
+    } else {
+      alert("يرجى إدخال الاسم والبريد الإلكتروني");
+    }
+  }
+
+  // الأسئلة
+  const questions = [
+    { image: "Img1.jpg", answers: ["أتلتيكو مدريد", "بايرن ليفركوزن", "روما", "بنفيكا"], correct: 0 },
+    { image: "Img2.jpg", answers: ["بنفيكا", "ليفربول", "بايرن ليفركوزن", "الجزيرة الإماراتي"], correct: 1 },
+    { image: "Img3.jpg", answers: ["إنتر ميامي", "إيه سي ميلان", "إشبيلية", "القادسية"], correct: 1 },
+    { image: "Img4.jpg", answers: ["بايرن ميونيخ", "بايرن ليفركوزن", "سالزبورغ", "بوروسيا دورتموند"], correct: 3 },
+    { image: "Img5.jpg", answers: ["تشيلسي", "مانشستر سيتي", "بنفيكا", "أستون فيلا"], correct: 1 },
+    { image: "Img6.png", answers: ["روميو", "جارناتشو", "ماونت", "أودوجي"], correct: 2 },
+    { image: "Img7.png", answers: ["روجرز", "فان دي فين", "ماتي كاش", "سوبوسلاي"], correct: 2 },
+    { image: "Img8.png", answers: ["ديكلان رايس", "أودوجي", "باريلا", "إيموبيلي"], correct: 1 },
+    { image: "Img10.png", answers: ["كوناتي", "برونو فيرنانديز", "جرافيينبرخ", "تسيميكاس"], correct: 3 },
+    { image: "Img9.png", answers: ["محمد جبنة", "سام مرسي", "أشرف كابوريا", "أحمد قطة"], correct: 1 }
+  ];
+
+  let currentQuestion = 0;
+  let score = 0;
+
+  function updateScore() {
+    document.getElementById("score").textContent = score;
+  }
+
+  function loadQuestion() {
+    if (currentQuestion >= questions.length) {
+      document.getElementById("question-container").style.display = "none";
+      document.getElementById("certificate-btn").style.display = "block";
+      return;
+    }
+
+    const question = questions[currentQuestion];
+    document.getElementById("question-image").src = question.image;
+    const buttons = document.querySelectorAll(".answers button");
+    buttons.forEach((button, index) => {
+      button.textContent = question.answers[index];
+      button.className = "";
+      button.onclick = () => checkAnswer(button, index === question.correct);
+    });
+  }
+
+  function checkAnswer(button, isCorrect) {
+    if (isCorrect) {
+      button.classList.add("correct");
+      score += 10;
+      updateScore();
+    } else {
+      button.classList.add("wrong");
+    }
+
+    setTimeout(() => {
+      currentQuestion++;
+      loadQuestion();
+    }, 500);
+  }
+</script>
+</body>
+</html>

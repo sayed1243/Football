@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تحديات كروية</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"> 
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f3f4f6;
+      color: #333;
+      line-height: 1.6;
+      font-family: "Amiri", serif;
+    }
+    button,input,textarea {
+    	font-family: "Amiri", serif;
+    }
+    nav {
+      background-color: #004d61;
+      color: white;
+      padding: 10px 0px;
+      text-align: center ;
+      position:fixed;
+      width:100%;
+      top:0;
+    }
+    nav h3 {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size:30px;
+    }
+    nav div{
+    	background:#ffffff;
+        margin: 10px -20px -10px ;
+        padding:10px;
+        border-bottom: solid 5px #004d61;
+        display:flex;
+        Justify-content: center;
+        align-items: center;
+        gap:30px;
+    }
+    nav div a{
+    	   color: #004d61;
+      text-decoration: none;
+      font-size:20px;
+    }	
+    
+    
+    header {
+      text-align: center;
+      padding: 50px 20px;
+      background-color: #006d7c;
+      color: white;
+      margin-top:120px
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+    header p {
+      margin: 10px 0;
+      font-size: 1.2em;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    .container p{
+    	font-size:20px;
+    }
+    .container a {
+      display: inline-block;
+      background-color: #004d61;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size:16px;
+      text-decoration: none;
+    }
+    button:hover {
+      background-color: #006d7c;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    form button {
+      width: 100%;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #004d61;
+      color: white;
+    }
+    .social-icons a {
+      color: white;
+      margin: 0 10px;
+      font-size: 1.5em;
+      text-decoration: none;
+    }
+    .social-icons a:hover {
+      color: #ffa500;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <h3>تحديات كروية</h3>
+    <div>
+      <a href="#">الرئيسية</a>
+      <a href="#">الأسئلة</a>
+      <a href="#">تواصل معنا</a>
+    </div>
+  </nav>
+
+  <header>
+    <h1>مرحبًا بكم في موقع تحديات كروية</h1>
+    <p>اختبر معلوماتك الكروية وأجب عن أسئلة ممتعة</p>
+  </header>
+
+  <div class="container">
+    <h2>الأسئلة</h2>
+    <p>أجب على جميع الأسئلة مع شهادة من الموقع </p>
+    <a href="questions.html">الذهاب إلى صفحة الأسئلة</a>
+  </div>
+
+  <div class="container">
+    <h2>تواصل معنا</h2>
+    <form>
+      <input type="text" name="name" placeholder="الاسم" required>
+      <input type="email" name="email" placeholder="البريد الإلكتروني" required>
+      <textarea name="message" placeholder="رسالتك" rows="5" required></textarea>
+      <button  style="background:#004d61; color:#ffffff; border:none; padding:5px; border-radius:5px;font-size:16px" type="submit">إرسال</button>
+    </form>
+  </div>
+
+  <footer>
+    <p>جميع الحقوق محفوظة © 2024 SMO</p>
+    <div class="social-icons">
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://tiktok.com" target="_blank"><i class="fab fa-tiktok"></i></a>
+        <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+    </div>
+  </footer>
+</body>
+</html>
