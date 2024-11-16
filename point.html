@@ -34,25 +34,34 @@
     #download-btn:hover {
       background-color: #006d7c;
     }
-    #certificate{
-    padding:20px 20px 0px;
-        width:600px;
-        background:#004d61;
-        border:#ffffff solid 3px;
-        border-radius:10px;
-        text-align: center;
-       } 
+    #certificate {
+      padding: 20px 20px 0px;
+      width: 600px;
+      background: #004d61;
+      border: #ffffff solid 3px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .name, .score {
+      font-size: 30px;
+      color: #fff;
+    }
+    p {
+      margin: 10px;
+      font-size: 35px;
+      color: #fff;
+    }
   </style>
 </head>
 <body>
   <div id="certificate">
-  <p style="margin:10px;font-size:35px; color:#ffffff">شكر وتقدير</p>
-  <div style="display: flex; Justify-content: center; color:#fff"> يتقدم موقع تحديات كروية بخالص الشكر ل</div>
-    <span class="name" id="name" style="font-size:30px; color:#fff"></span>
-    <div style="display: flex; Justify-content: center; color:#fff">حصوله على عدد من النقاط<span class="score" id="score" style="margin:0px 10px"></span></div>
-    <p style="text-align:left;  padding:5px;width:50px; height:50px; border-radius:50%;font-size:25px; text-align: center; display: flex; Justify-content: center; align-items: center; box-shadow:0px 0px 5px 5px #004d61 inset; color:#fffffd;font-weight:900; margin-right:80%">SMO</o>
-    
+    <p>شكر وتقدير</p>
+    <div style="display: flex; justify-content: center; color:#fff;">يتقدم موقع تحديات كروية بخالص الشكر ل</div>
+    <span class="name" id="name"></span>
+    <div style="display: flex; justify-content: center; color:#fff; align-items: center;gap:10px">حصوله على عدد من النقاط: <span class="score" id="score" ></span></div>
+    <p style="text-align:left; padding:5px;width:50px; height:50px; border-radius:50%; font-size:25px; text-align: center; display: flex; justify-content: center; align-items: center; box-shadow:0px 0px 5px 5px #004d61 inset; color:#fffffd; font-weight:900; margin-right:80%">SMO</p>
   </div>
+
   <button id="download-btn">تنزيل الشهادة</button>
 
   <script>
@@ -60,9 +69,14 @@
     const username = localStorage.getItem("username");
     const score = localStorage.getItem("score");
 
-    // عرض البيانات على الشهادة
-    document.getElementById("name").textContent = `${username}`;
-    document.getElementById("score").textContent = ` ${score}`;
+    // التحقق من وجود البيانات
+    if (username && score) {
+      // عرض البيانات على الشهادة
+      document.getElementById("name").textContent = `${username}`;
+      document.getElementById("score").textContent = `${score}`;
+    } else {
+      alert("البيانات غير موجودة. يرجى إتمام الاختبار أولاً.");
+    }
 
     // تنزيل الشهادة كصورة
     document.getElementById("download-btn").addEventListener("click", () => {
